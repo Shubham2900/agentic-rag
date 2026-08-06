@@ -1,14 +1,14 @@
-# 🤖 Agentic RAG with LangGraph
+# 🤖 Advanced RAG with LangGraph
 
-> An intelligent Retrieval-Augmented Generation (RAG) system built using **LangGraph**, **LangChain**, **Ollama**, **ChromaDB**, and **Tavily Search**.
+> A progressive implementation of modern **Retrieval-Augmented Generation (RAG)** architectures using **LangGraph**, **LangChain**, **Ollama**, **ChromaDB**, and **Tavily Search**.
 
 <p align="center">
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
-![LangGraph](https://img.shields.io/badge/LangGraph-Agent_Workflows-green)
-![LangChain](https://img.shields.io/badge/LangChain-Framework-success)
+![LangGraph](https://img.shields.io/badge/LangGraph-Agent_Workflows-00C853)
+![LangChain](https://img.shields.io/badge/LangChain-LLM_Framework-2E7D32)
 ![Ollama](https://img.shields.io/badge/Ollama-Local_LLM-black)
-![Chroma](https://img.shields.io/badge/Chroma-Vector_DB-purple)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_Database-purple)
 ![Tavily](https://img.shields.io/badge/Tavily-Web_Search-orange)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
@@ -16,49 +16,95 @@
 
 ---
 
-## 🚀 Overview
+# 📖 Overview
 
-This project implements an **Agentic RAG workflow** where an AI agent decides whether the retrieved documents are sufficient or if it should search the web before generating the final response.
+This repository demonstrates the evolution of **Retrieval-Augmented Generation (RAG)** systems by progressively enhancing a traditional RAG pipeline into a production-style **Agentic AI** workflow.
 
-Instead of blindly answering from retrieved context, the agent **reasons** about document relevance, making responses more accurate and reliable.
+Beginning with semantic retrieval, the project incrementally introduces document relevance grading, conditional web search, self-reflection, hallucination detection, answer validation, query rewriting, and adaptive routing using **LangGraph** state machines.
+
+Rather than implementing separate applications, each stage builds upon the previous one to showcase how increasingly capable retrieval systems can be engineered.
 
 ---
 
-# 🏗 Architecture
+# 🚀 Project Evolution
+
+| Stage | Capability Introduced |
+|--------|-----------------------|
+| 📚 **Basic RAG** | Semantic retrieval using ChromaDB followed by grounded response generation. |
+| 🤖 **Agentic RAG** | LLM-based document grading with conditional web search for missing knowledge. |
+| 🔄 **Self-RAG** | Hallucination detection, answer grading, and query rewriting through self-reflection. |
+| 🧠 **Adaptive RAG** | Intelligent query routing between vector retrieval and web search for improved efficiency. |
+
+---
+
+# 🏗 Evolution of the Workflow
 
 ```text
-                    👤 User Question
-                           │
-                           ▼
-                 🔍 Retrieve Documents
-                           │
-                           ▼
-            📝 Grade Document Relevance
-                  │                 │
-         ✅ Relevant          ❌ Irrelevant
-                  │                 │
-                  │          🌐 Web Search
-                  │                 │
-                  └─────────┬───────┘
-                            ▼
-                     🤖 Generate Answer
-                            │
-                            ▼
-                           🎯 Response
+                 Basic RAG
+                     │
+                     ▼
+               Agentic RAG
+                     │
+                     ▼
+                 Self-RAG
+                     │
+                     ▼
+               Adaptive RAG
+```
+
+---
+
+# 🏛 Final Workflow
+
+```text
+                              User Question
+                                    │
+                                    ▼
+                             Query Router
+                                    │
+                     ┌──────────────┴──────────────┐
+                     ▼                             ▼
+             Vector Retrieval                Web Search
+                     │                             │
+                     └──────────────┬──────────────┘
+                                    ▼
+                     Grade Retrieved Documents
+                                    │
+                     ┌──────────────┴──────────────┐
+                     ▼                             ▼
+             Generate Answer               Retrieve More
+                     │
+                     ▼
+            Hallucination Detection
+                     │
+                     ▼
+               Answer Evaluation
+                     │
+          ┌──────────┴───────────┐
+          ▼                      ▼
+     Return Answer         Rewrite Query
+                                   │
+                                   ▼
+                            Retrieve Again
 ```
 
 ---
 
 # ✨ Features
 
-- 📄 Retrieval-Augmented Generation
-- 🤖 Agentic Decision Making
-- 🧠 LLM-based Document Grading
-- 🌐 Automatic Web Search Fallback
-- 📚 Persistent Chroma Vector Database
-- ⚡ Local LLM using Ollama
-- 🧩 Modular LangGraph Workflow
+- 📚 Semantic Retrieval using ChromaDB
+- 🤖 Agentic RAG Workflow
+- 🔄 Self-RAG with Reflection
+- 🧠 Adaptive Query Routing
+- 🌐 Automatic Web Search using Tavily
+- 📄 LLM-based Document Relevance Grading
+- 🎯 Hallucination Detection
+- ✅ Answer Quality Evaluation
+- 🔁 Query Rewriting
 - 📦 Structured Outputs using Pydantic
+- 🔀 LangGraph State Machines
+- ⚡ Local LLM Inference using Ollama
+- 🧪 Unit Testing with Pytest
 
 ---
 
@@ -67,145 +113,142 @@ Instead of blindly answering from retrieved context, the agent **reasons** about
 | Technology | Purpose |
 |------------|----------|
 | 🐍 Python | Programming Language |
+| 🔀 LangGraph | Agent Workflow Orchestration |
 | 🦜 LangChain | LLM Framework |
-| 🔀 LangGraph | Agent Workflow |
 | 🦙 Ollama | Local LLM Inference |
-| 🧠 GPT-OSS 20B | Generation & Grading |
+| 🧠 GPT-OSS 20B | Generation & Reasoning |
 | 📚 ChromaDB | Vector Database |
-| 🔎 Nomic Embed | Embedding Model |
-| 🌐 Tavily | Web Search |
-| 📑 Unstructured | Document Loader |
-| 🧪 Pytest | Testing |
+| 🔎 Nomic Embed Text | Embedding Model |
+| 🌐 Tavily Search | Web Search |
+| 📄 Unstructured | Document Parsing |
+| 🧪 Pytest | Testing Framework |
 
 ---
 
 # 📂 Project Structure
 
 ```text
-agentic-rag/
-│
+.
 ├── graph/
 │   ├── chains/
-│   │   ├── generation.py
-│   │   └── retrieval_grader.py
-│   │
+│   │   └── tests/
 │   ├── nodes/
-│   │   ├── retrieve.py
-│   │   ├── grade_documents.py
-│   │   ├── web_search.py
-│   │   └── generate.py
-│   │
 │   ├── graph.py
 │   ├── state.py
 │   └── consts.py
 │
+
 ├── ingestion.py
 ├── main.py
+├── pyproject.toml
 ├── .env
 └── README.md
 ```
 
 ---
 
-# ⚙ Workflow
+# 🔄 Workflow Progression
 
-## 🔍 Step 1 — Retrieve
+## 📚 Basic RAG
 
-Searches the Chroma vector database for semantically similar documents.
+```text
+Question
+    │
+    ▼
+Retrieve
+    │
+    ▼
+Generate
+```
 
 ---
 
-## 📝 Step 2 — Grade
-
-Each document is evaluated by the LLM.
+## 🤖 Agentic RAG
 
 ```text
 Question
       │
       ▼
-Document
+Retrieve
       │
       ▼
-LLM Grader
+Grade Documents
       │
- ┌────┴────┐
- │         │
-YES       NO
- │         │
- ▼         ▼
-Keep    Discard
+ ┌────┴─────┐
+ │          │
+Generate   Web Search
+      │      │
+      └──┬───┘
+         ▼
+     Generate
 ```
 
 ---
 
-## 🌐 Step 3 — Web Search
+## 🔄 Self-RAG
 
-If retrieved knowledge is insufficient, the agent automatically searches the web using Tavily.
-
----
-
-## 🤖 Step 4 — Generate
-
-The final answer is generated using:
-
-- Relevant Documents
-- Web Results (if needed)
-
----
-
-# 🔄 LangGraph Workflow
-
-```mermaid
-graph TD
-
-A[User Question]
--->B[Retrieve]
-
-B
--->C[Grade Documents]
-
-C
---Relevant-->
-D[Generate]
-
-C
---Need More Context-->
-E[Web Search]
-
-E
--->D
-
-D
--->F[Answer]
+```text
+Question
+      │
+      ▼
+Retrieve
+      │
+      ▼
+Generate
+      │
+      ▼
+Hallucination Detection
+      │
+      ▼
+Answer Grader
+      │
+ ┌────┴─────────┐
+ │              │
+Accept     Rewrite Query
+                 │
+                 ▼
+            Retrieve Again
 ```
 
 ---
 
-# 🧠 State
+## 🧠 Adaptive RAG
 
-```python
-class GraphState(TypedDict):
-
-    question: str
-
-    documents: List[Document]
-
-    web_search: bool
-
-    generation: str
+```text
+Question
+      │
+      ▼
+Query Router
+      │
+ ┌────┴────────┐
+ │             │
+Vector     Web Search
+Search
+ │             │
+ └────┬────────┘
+      ▼
+ Retrieve
+      │
+      ▼
+Grade Documents
+      │
+      ▼
+Generate
 ```
 
 ---
 
-# 📦 Installation
+# ⚙ Installation
 
 Clone the repository.
 
 ```bash
-git clone https://github.com/<your-username>/agentic-rag.git
+git clone https://github.com/Shubham2900/agentic-rag.git
+
+cd agentic-rag
 ```
 
-Create virtual environment.
+Create a virtual environment.
 
 ```bash
 uv venv
@@ -221,7 +264,7 @@ uv sync
 
 # 🤖 Ollama Setup
 
-Pull required models.
+Pull the required models.
 
 ```bash
 ollama pull gpt-oss:20b
@@ -229,7 +272,7 @@ ollama pull gpt-oss:20b
 ollama pull nomic-embed-text
 ```
 
-Start Ollama.
+Start the Ollama server.
 
 ```bash
 ollama serve
@@ -241,43 +284,55 @@ ollama serve
 
 Create a `.env` file.
 
-```text
-TAVILY_API_KEY=xxxxxxxxxxxxxxxx
+```env
+TAVILY_API_KEY=your_api_key
 ```
 
 ---
 
 # 📚 Build the Vector Store
 
+Run the ingestion pipeline to download, split, embed, and index the knowledge base.
+
 ```bash
 python ingestion.py
 ```
 
+The vector database will be stored locally inside:
+
+```text
+.chroma/
+```
+
 ---
 
-# ▶ Run
+# ▶ Running the Project
 
 ```bash
 python main.py
 ```
 
-Example
+Example Output
 
 ```text
 Hello Advanced RAG
 
-Retrieving documents...
+Retrieving Documents...
 
-Checking document relevance...
+Grading Retrieved Documents...
 
-Generate Answer...
+Performing Web Search (if required)...
+
+Checking Hallucinations...
+
+Evaluating Answer...
 
 Done ✅
 ```
 
 ---
 
-# 🧪 Tests
+# 🧪 Running Tests
 
 ```bash
 pytest
@@ -285,42 +340,76 @@ pytest
 
 ---
 
-# 📖 Knowledge Base
+# 📖 Knowledge Sources
 
-The vector database is created from Lilian Weng's excellent articles:
+The vector database is created from the following technical articles by **Lilian Weng**:
 
 - 🤖 LLM Powered Autonomous Agents
-- 📝 Prompt Engineering
-- 🛡 Adversarial Attacks on LLMs
+- ✍️ Prompt Engineering
+- 🛡️ Adversarial Attacks on Large Language Models
 
 ---
 
-# 🚀 Future Improvements
+# 🎯 Learning Outcomes
 
-- ✅ Query Rewriting
-- ✅ Hallucination Detection
-- ✅ Answer Grading
-- ✅ Reflection Agents
+This repository demonstrates practical implementations of:
+
+- Retrieval-Augmented Generation (RAG)
+- Agentic AI Workflows
+- LangGraph State Machines
+- Semantic Search
+- Vector Databases
+- Reflection-based Reasoning
+- Hallucination Detection
+- Adaptive Retrieval
+- Query Routing
+- Query Rewriting
+- Local LLM Deployment
+- Structured LLM Outputs
+- Context-Aware Response Generation
+
+---
+
+# 🚀 Roadmap
+
+- ✅ Basic RAG
+- ✅ Agentic RAG
 - ✅ Self-RAG
-- ✅ Hybrid Search
-- ✅ Memory
-- ✅ Multi-Agent Support
-- ✅ Streaming Responses
+- ✅ Adaptive RAG
+- ⏳ Corrective RAG (CRAG)
+- ⏳ Graph RAG
+- ⏳ Hybrid Search (BM25 + Vector Search)
+- ⏳ Multi-Agent RAG
+- ⏳ MCP Integration
+- ⏳ Long-Term Memory
+- ⏳ Evaluation Framework
+- ⏳ Streaming Responses
 
 ---
 
-# ❤️ Built With
+# 🤝 Contributing
 
-<div align="center">
+Contributions are welcome!
 
-🐍 Python • 🦜 LangChain • 🔀 LangGraph • 🦙 Ollama • 📚 Chroma • 🌐 Tavily
+If you'd like to improve an existing workflow or implement another advanced RAG architecture, feel free to open an issue or submit a pull request.
 
-</div>
+---
+
+# ⭐ Support
+
+If you found this project useful:
+
+- ⭐ Star this repository
+- 🍴 Fork it
+- 🛠️ Contribute improvements
+- 📢 Share it with the AI community
 
 ---
 
 <div align="center">
 
-⭐ If you found this project helpful, consider giving it a star!
+### 🚀 Building Production-Ready Agentic RAG Systems with LangGraph
+
+**Made with ❤️ using Python, LangGraph, LangChain, Ollama, ChromaDB & Tavily Search**
 
 </div>
